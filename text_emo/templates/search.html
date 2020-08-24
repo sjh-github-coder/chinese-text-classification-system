@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <!-- pyecharts配置文件引入-->
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+</head>
+
+<body>
+
+<!-- 网站简介部分 -->
+<div class="jumbotron">
+    <div style="margin-left:50px">
+        <h1>欢迎使用文本情感分析系统</h1>
+        <h2>我们能做什么？</h2>
+        <p>我们可以通过您输入的URL地址，爬取相应的微博评论，并根据您的选择采用相应的算法进行文本情感分析，并将最终的结果展示给您</p>
+        <a href="/text_emo/textclassify">单个文本分析请点击这里</a>
+    </div>
+</div>
+
+
+<!-- 用户输入地址部分 -->
+<div style="margin-left:300px;margin-right:300px">
+    <h2>第一步：请您输入您要爬取的URL地址</h2>
+    <div class="input-group">
+        <form action="/text_emo/search" method="post"  >
+            {% csrf_token %}
+            <input type="text" name="search_url" placeholder="微博首页地址" style="width:600px; height:35px">
+                    <input type="submit" name="" value="提交"/>
+        </form>
+    </div><!-- /input-group -->
+</div>
+
+<!-- 算法选择部分 -->
+<div style="margin-left:300px;margin-right:300px;margin-top:100px">
+    <h2>第二步：请选择您想要使用的文本情感分类算法</h2>
+
+    <!-- 卷积神经网络 -->
+    <ul class="media-list" style="margin-top:35px">
+        <li class="media">
+            <div class="media-left">
+                <img class="media-object" src="/static/images/jiqixuexi.png" alt="...">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">卷积神经网络分类</h3>
+                卷积神经网络（Convolutional Neural Networks, CNN）是一类包含卷积计算且具有深度结构的前馈神经网络（Feedforward Neural
+                Networks），是深度学习（deep learning）的代表算法之一。卷积神经网络具有表征学习（representation
+                learning）能力，能够按其阶层结构对输入信息进行平移不变分类（shift-invariant classification）。
+
+                <form >
+                   　{% csrf_token %}
+                    <input type="file" id="cnn-avatar">
+                    <br>
+                    <input type="button" id="cnn-ajax-submit" value="提交">
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!-- SVM -->
+    <ul class="media-list" style="margin-top:35px">
+        <li class="media">
+            <div class="media-left">
+                <img class="media-object" src="/static/images/SVM.png " alt="...">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">SVM分类</h3>
+                支持向量机（Support Vector Machine, SVM）是一类按监督学习（supervised learning）方式对数据进行二元分类的广义线性分类器（generalized linear
+                classifier），其决策边界是对学习样本求解的最大边距超平面（maximum-margin hyperplane）
+                <form >
+                   　{% csrf_token %}
+                    <input type="file" id="svm-avatar">
+                    <br>
+                    <input type="button" id="svm-ajax-submit" value="提交">
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!-- 朴素贝叶斯 -->
+    <ul class="media-list" style="margin-top:35px">
+        <li class="media">
+            <div class="media-left">
+                <img class="media-object" src="/static/images/NB.png " alt="...">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">朴素贝叶斯分类</h3>
+                朴素贝叶斯方法是在贝叶斯算法的基础上进行了相应的简化，即假定给定目标值时属性之间相互条件独立。也就是说没有哪个属性变量对于决策结果来说占有着较大的比重，也没有哪个属性变量对于决策结果占有着较小的比重。虽然这个简化方式在一定程度上降低了贝叶斯分类算法的分类效果，但是在实际的应用场景中，极大地简化了贝叶斯方法的复杂性。
+                <!-- <p><a class="btn btn-primary" href="/text_emo/search" role="button" style="margin-top:5px">使用</a></p> -->
+                <form >
+                   　{% csrf_token %}
+                    <input type="file" id="avatar">
+                    <br>
+                    <input type="button" id="ajax-submit" value="提交">
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!-- 情感词典 -->
+    <ul class="media-list" style="margin-top:35px">
+        <li class="media">
+            <div class="media-left">
+                <img class="media-object" src="/static/images/vocab.png " alt="...">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">情感词典分类</h3>
+                基于情感词典的文本情感分析方法粒度较细，能够实现较为准确的情感分析，但由于微博等媒体中的短文本存在主题不明确、情感发散、语言不规范、未登录词较多、结构复杂等问题，使得这些现有的忽略了句子结构的基于情感词典的方法，无法从海量的互联网文本信息中获取语法特征产生的情感信息，因此实际使用效果不够理想。
+                <!-- <p><a class="btn btn-primary" href="/text_emo/search" role="button" style="margin-top:5px">使用</a></p> -->
+                <form >
+                   　{% csrf_token %}
+                    <input type="file" id="vocab-avatar">
+                    <br>
+                    <input type="button" id="vocab-ajax-submit" value="提交">
+                </form>
+            </div>
+        </li>
+    </ul>
+
+    <!-- 语料库查看 -->
+    <div style="margin-top:35px">
+        <h3 class="media-heading">训练集语料库查看入口</h3>
+        <form action="/text_emo/corpus?page=1" method="post">
+            {% csrf_token %}
+            <input class="btn btn-default"  type="button" value="查看">
+        </form>
+</div>
+</div>
+<script>
+
+    $("#ajax-submit").click(function(){
+        var formdata=new FormData();
+     　  formdata.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+        formdata.append("myfile",$("#avatar")[0].files[0]);
+        $.ajax({
+            url:"/text_emo/selectNB",
+            type:"post",
+            data:formdata,
+            processData: false ,    // 不处理数据
+            contentType: false,    // 不设置内容类型
+
+            success:function(data){
+               chart.setOption(data.data);
+               console.log(data)
+            }
+        })
+
+    })
+    $("#svm-ajax-submit").click(function(){
+        var formdata=new FormData();
+     　  formdata.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+        formdata.append("myfile",$("#svm-avatar")[0].files[0]);
+        $.ajax({
+            url:"/text_emo/selectSVM",
+            type:"post",
+            data:formdata,
+            processData: false ,    // 不处理数据
+            contentType: false,    // 不设置内容类型
+
+            success:function(data){
+               chart.setOption(data.data);
+               console.log(data)
+            }
+        })
+
+    })
+
+    $("#cnn-ajax-submit").click(function(){
+        var formdata=new FormData();
+     　  formdata.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+        formdata.append("myfile",$("#cnn-avatar")[0].files[0]);
+        $.ajax({
+            url:"/text_emo/selectCNN",
+            type:"post",
+            data:formdata,
+            processData: false ,    // 不处理数据
+            contentType: false,    // 不设置内容类型
+
+            success:function(data){
+               chart.setOption(data.data);
+               console.log(data)
+            }
+        })
+
+    })
+
+    $("#vocab-ajax-submit").click(function(){
+        var formdata=new FormData();
+     　  formdata.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+        formdata.append("myfile",$("#vocab-avatar")[0].files[0]);
+        $.ajax({
+            url:"/text_emo/selectVOCAB",
+            type:"post",
+            data:formdata,
+            processData: false,// 不处理数据
+            contentType: false,// 不设置内容类型
+            success:function(data){
+               chart.setOption(data.data);
+               console.log(data)
+            }
+        })
+
+    })
+
+</script>
+
+<!-- 结果查看部分 -->
+<div style="margin-left:300px;margin-right:300px;margin-top:100px">
+    <h2>第三步：查看分类结果</h2>
+    <h4 style="margin-top:30px">文件名称：</h4>  <!-- 此处届时将替换成输入数据 -->
+    <h4>评论总数：</h4> <!-- 此处届时将替换成输入数据 -->
+    <h3 style="margin-top:30px"><center>微博评论情感分析结果</center></h3>
+</div>
+
+<div id="bar" style="width:700px; height:450px;margin:0 auto"></div>
+
+<script type="text/javascript">
+  var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+
+        $(
+            function () {
+                fetchData(chart);
+            }
+        );
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "/text_emo/result",
+                dataType: 'json',
+                success: function (result) {
+                    chart.setOption(result.data);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

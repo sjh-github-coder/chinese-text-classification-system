@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <!-- pyecharts配置文件引入-->
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+</head>
+
+<body>
+<div style="margin-left:350px;margin-right:350px;margin-top:50px">
+    <a href="/text_emo/index">点击这里回到首页</a>
+     <form id="form">
+        <h3 class="">请在下方输入您想要分析的文本：</h3>
+         <textarea name="comment" id="comment" style="width: 600px; height:120px">{{comment}}</textarea>
+        <select class="form-control" id="taskTypeSelect" name="task_type" style="width: 300px; margin-top:20px">
+            <option selected="" name="taskTypeSelect">请选择情感分析方法</option>
+                <option value="cnn" name="task_type">卷积神经网络</option>
+                <option value="svm" name="task_type">支持向量机</option>
+                <option value="nb" name="task_type">朴素贝叶斯</option>
+                <option value="vocab" name="task_type">基于情感词典分析</option>
+        </select>
+         <br>
+        <button type="submit" id="text-submit">提交</button>
+         {% if result != '' %}
+         <h3 style="margin-top:30px">情感分析结果：</h3>
+         <h4 style="margin-top:10px">用{{task_type}}方法进行情感分析的结果为：{{result}}</h4>
+         {% elif result == '' %}
+         <h3 style="margin-top:30px"></h3>
+         {% endif %}
+    </form>
+</div>
+<div>
+<script>
+    $("text-submit").click(function(){
+        var data={};
+        data['comment'] = $('#comment').val()
+        data['task_type'] = $('#task_type').val()
+        $.ajax({
+            url:"/text_emo/textclassify/",
+            type:"GET",
+            data:data,
+            contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+            dataType:'text',// 不设置内容类型
+            success:function(data){
+            }
+        })
+
+    })
+</script>
+</div>
+</body>
+</html>

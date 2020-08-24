@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看您的数据爬取结果</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<!-- 结果概述 -->
+<div class="jumbotron">
+    <div style="margin-left:50px;margin-right:50px">
+        <h2>您的数据爬取结果如下：</h2>
+        <p>您抓取评论的微博发布者ID为：北京生活杂志</p>
+        <p>微博发布时间为：2019.11.24-10:32</p>
+        <p>微博文本内容为：1959年纪录片《漫步北京》，当年的首都机场、新旧长安街和北海大桥的对比、北大未名湖畔、陶然亭游泳场…… 时间较长，先马后看！感受一下内时候的北京城！</p>
+        <p>一共为您抓取到78条评论</p>
+
+    </div>
+</div>
+
+
+<table class="table table-striped" style="margin-left:200px;margin-right:200px;width:1300px">
+    <tr>
+        <th>序号</th>
+        <th>评论者ID</th>
+        <th>评论内容</th>
+        <th>评论时间</th>
+    </tr>
+    <tr>
+        <td>01</td>
+        <td>00001</td>
+        <td>更博了，爆照了，帅的呀，就是越来越爱你！生快傻缺[爱你][爱你][爱你]</td>
+        <td>2019.03.06-14:56:43</td>
+    </tr>
+    <tr>
+        <td>02</td>
+        <td>00003</td>
+        <td>@张晓鹏jonathan 土耳其的事要认真对待[哈哈]，否则直接开除。@丁丁看世界 很是细心，酒店都全部OK啦。</td>
+        <td>2019.04.05-12:43:21</td>
+    </tr>
+    <tr>
+        <td>03</td>
+        <td>00004</td>
+        <td>姑娘都羡慕你呢…还有招财猫高兴……//@爱在蔓延-JC:[哈哈]小学徒一枚，等着明天见您呢//@李欣芸SharonLee:大佬范儿[书呆子]</td>
+        <td>2019.04.05-12:42:33</td>
+    </tr>
+    <tr>
+        <td>04</td>
+        <td>00005</td>
+        <td>梦想有多大，舞台就有多大![鼓掌]</td>
+        <td>2019.04.05-12:44:23</td>
+    </tr>
+</table>
+
+<nav aria-label="Page navigation" style="margin-left:700px">
+    <ul class="pagination">
+        <li>
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- 按钮模块-->
+<div style="margin-top:20px;margin-left:480px">
+    <button style="margin-left:200px" type="button" class="btn btn-default">返回首页</button>
+    <button style="margin-left:50px" type="button" class="btn btn-primary">保存爬取结果(.csv)</button>
+</div>
+</body>
+</html>
