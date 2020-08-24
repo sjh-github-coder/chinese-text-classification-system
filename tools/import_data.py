@@ -11,7 +11,7 @@ from text_emo.models import corpus
 
 
 def main():
-    content_list = [ ]
+    content_list = []
     i=1
     '''
     files = os.listdir(data_path)
